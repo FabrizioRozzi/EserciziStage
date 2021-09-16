@@ -111,29 +111,94 @@
 /////////////////////////////////
 /////////////////////////////////
 
-//Funzione dove x prende il valore dell'operazione da eseguire e y con i tre punti prima diventa un array per tutti i valori di input della funzione
+//Funzione dove x prende il valore dell'operazione da eseguire e y con i tre punti prima diventa un array per tutti i valori di input della funzione. Nella divisione prende solo i primi due valori.
 
-console.log(eseguiOperazione("somma", 2,2,2,2,2));
+// console.log(eseguiOperazione("dividi", 10,2,2));
 
-function eseguiOperazione(x, ...y) {
-  var z = 0;
-  switch (x) {
-  case "somma":
-  for (i in y) {
-  z = z + y[i];  
-  }
-  break;
-  case "moltiplica":
-  for (i in y) {
-  z = z * y[i];
-  }
-  break;
-  case "dividi":
-  z = y[0]/y[1];
-  break;
-  default:
-  z = NaN;
-  break;
-  }
-  return z;
-  }
+// function eseguiOperazione(x, ...y) {
+//   var z = 0;
+//   switch (x) {
+//   case "somma":
+//   for (i in y) {
+//   z = z + y[i];  
+//   }
+//   break;
+//   case "moltiplica":
+//   for (i in y) {
+//   z = z * y[i];
+//   }
+//   break;
+//   case "dividi":
+//   z = y[0]/y[1];
+//   break;
+//   default:
+//   z = NaN;
+//   break;
+//   }
+//   return z;
+//   }
+
+
+/////////////////////////////////
+/////////////////////////////////
+//// SNACK valueOf toString /////
+/////////////////////////////////
+/////////////////////////////////
+
+
+
+// var persona = new Object({nome: "Mario", cognome: "Rossi"});
+// console.log(persona.valueOf());
+// console.log(persona.toString());
+
+
+
+/////////////////////////////////
+/////////////////////////////////
+////////// SNACK RegExp /////////
+/////////////////////////////////
+/////////////////////////////////
+
+
+//Un’espressione regolare in JavaScript quindi è un oggetto, con delle proprietà e metodi che consentono di gestire testi, individuare ed eventualmente sostituire stringhe all’interno di altre stringhe.
+//Si possono dichiarare o inizializzando una variabile come oggetto RegExp passando come valori il pattern da inizializzare e seguito da una virgola da eventuali modificatori.
+//I modificatori sono regole per la ricerca della stringa passata
+
+// var x = new RegExp("abc", "i");
+// var y = /abc/i;
+// var x = new RegExp("abc", "ig");
+// var y = /abc/ig;
+
+
+//Aggiungendo dei valori nelle [] si specifica ogni parola che inizia per i valori nelle [] e termina in questo caso con 'bc' 
+
+//var y = /[aeiou]bc/i;
+
+
+//METODO TEST
+//Ritorna valore booleano. In questo caso la RegExp "/\d/" verifica se sono presenti valori numerici nella stringa passata al metodo test
+var y = /\d/;
+y.test("str1nga");	//true
+y.test("stringa");	//false
+
+//METODO EXEC
+//Ritorna una sottostringa contenente tutti i valori trovati dalla RegExp. Se non trova nessun valore ritorna null.
+var y = /\d/;
+y.exec("str1nga");	//["1"]
+y.exec("stringa");	//null
+
+//METODO SEARCH
+//Ritorna l'indice del primo valore riscontrato. In questo caso 3.
+var x = "str1nga".search(/\d/);
+
+//METODO SPLIT
+//Divide la stringa iniziale eliminando il valore trovato dalla RegExp.
+var x = "str1nga".split(/\d/);	//["str", "nga"]
+
+//METODO REPLACE
+//Sostituisce il valore trovato dalla RegExp con la stringa passata come secondo valore.
+var x = "str1ng4".replace(/\d/g, "numero");	//"strnumerongnumero"
+
+//METODO MATCH
+//Ti crea una sottostringa con il valore trovato dalla RegExp.
+var x = "str1ng4".match(/\d/g);	//["1", "4"]
