@@ -381,3 +381,51 @@ function arrowForEach(){
   var numeri = [18, 13, 24];
   numeri.forEach(valore => console.log(valore));
 }
+
+
+function calculator(){
+  var numeri = {
+    x: 12,
+    y: 3,
+    calcola: function(operazione) { //La funziona nell'oggetto non puó essere scritta come arrow function 
+      var fn;
+      switch (operazione) {
+        case '+':
+          fn = () => this.x + this.y;
+        break;
+        case '-':
+          fn = () => this.x - this.y
+        break;
+        default:
+          fn = () => {};
+      }
+      return fn();
+    }
+  }
+  console.log(numeri.calcola('+'));
+}
+
+
+
+
+/////////////////////////////////
+/////////////////////////////////
+// SNACK constructor object /////
+/////////////////////////////////
+/////////////////////////////////
+
+function costruttorePersona(){
+  /**
+   * Costruttore di oggetti Persona mediante funzione
+   * @param {*} nome 
+   * @param {*} cognome 
+   */
+  function Persona(nome, cognome) {
+    this.nome = nome;
+    this.cognome = cognome;
+    this.mostraNomeCompleto = function(){return this.nome+' '+this.cognome};
+  }
+  
+  var fabrizioRozzi = new persona('Fabrizio', 'Rozzi');
+  console.log(fabrizioRozzi.mostraNomeCompleto());
+}
