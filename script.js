@@ -260,3 +260,44 @@ function todayDate(){
   // var yyyy = mia_data.getFullYear();
   console.log(`Oggi é il ${gg=mia_data.getDate()}/${mm=mia_data.getMonth()+1}/${yyyy=mia_data.getFullYear()}`);
 }
+
+/////////////////////////////////
+/////////////////////////////////
+///// SNACK .key() .value() /////
+/////////////////////////////////
+/////////////////////////////////
+
+/**
+ * Test Object.key() with array, ordered object and unordered
+ */
+function keyObj(){
+  // simple array
+const arr = ['a', 'b', 'c'];
+console.log('Array restituisce indice= '+Object.keys(arr)); // console: ['0', '1', '2']
+
+// array-like object
+const obj = { 0: 'a', 1: 'b', 2: 'c' };
+console.log('Restituisce le keys oggetto= '+Object.keys(obj)); // console: ['0', '1', '2']
+
+// array-like object with random key ordering
+const anObj = { 100: 'a', 2: 'b', 7: 'c' };
+console.log('Restituisce le chiavi in ordine crescente e non in posizione= '+Object.keys(anObj)); // console: ['2', '7', '100']
+
+}
+
+/**
+ * Test Object.values() with array, ordered object and unordered
+ */
+function valuesObj(){
+  const obj = { foo: 'bar', baz: 42 };
+  console.log(Object.values(obj)); // ['bar', 42]
+
+  // Array-like object
+  const arrayLikeObj1 = { 0: 'a', 1: 'b', 2: 'c' };
+  console.log(Object.values(arrayLikeObj1 )); // ['a', 'b', 'c']
+
+  // Array-like object with random key ordering
+  // When using numeric keys, the values are returned in the keys' numerical order
+  const arrayLikeObj2 = { 100: 'a', 2: 'b', 7: 'c' };
+  console.log(Object.values(arrayLikeObj2 )); // ['b', 'c', 'a']
+}
