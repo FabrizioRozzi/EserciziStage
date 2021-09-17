@@ -309,11 +309,75 @@ function valuesObj(){
 /////////////////////////////////
 /////////////////////////////////
 
-var incrementatore = function(incremento) {
-	return function(valore) {
-		return incremento + valore;
-	};
-};
-var incrementaDiCinque = incrementatore(5);
-console.log(incrementaDiCinque(4));  // 9
-console.log(incrementaDiCinque(16)); // 21
+
+/**
+ * function that returns another function
+ */
+
+function funInFun(){
+  var incrementatore = function(incremento) {
+    return function(valore) {
+      return incremento + valore;
+    };
+  };
+  
+  var incrementaDiCinque = incrementatore(5); //Una variabile var diventa una funzione?
+
+  console.log(incrementaDiCinque(4));  // 9
+  console.log(incrementaDiCinque(16)); // 21
+}
+
+
+/**
+ * object consisting of two properties and a function that returns a concatenation of property strings
+ */
+function helloPersona(){
+  var persona = {
+    nome: "Mario",
+    cognome: "Rossi",
+    nomeCognome: function() {
+        return(this.nome + " " + this.cognome);
+  
+    }
+  };
+  /**
+   * Greeting concatenated to the return of the function of the object with bind
+   * @param {*} nomePersona function of the object
+   */
+  function saluta(nomePersona) {
+    console.log("Buongiorno " + nomePersona());
+  }
+  saluta(persona.nomeCognome.bind(persona));
+}
+
+
+/////////////////////////////////
+/////////////////////////////////
+///// SNACK Arrow function //////
+/////////////////////////////////
+/////////////////////////////////
+
+
+/**
+ * Example arrow function
+ */
+function sum(){
+  var somma = (x, y) => x + y; //(params), no{}, if there is only one return it can be omitted
+  console.log(somma(4, 6));
+}
+
+/**
+ * If the function has only one parameter, we can omit the round brackets
+ */
+function doubling(){
+  var totale = x => x*2;
+  console.log(totale(3)); 
+}
+
+/**
+ * print in console all the value od the array with arrow function form
+ */
+function arrowForEach(){
+  var numeri = [18, 13, 24];
+  numeri.forEach(valore => console.log(valore));
+}
