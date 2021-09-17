@@ -270,7 +270,7 @@ function todayDate(){
 /**
  * Test Object.key() with array, ordered object and unordered
  */
-function keyObj(){
+ function keyObj(){
   // simple array
 const arr = ['a', 'b', 'c'];
 console.log('Array restituisce indice= '+Object.keys(arr)); // console: ['0', '1', '2']
