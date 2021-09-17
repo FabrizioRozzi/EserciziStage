@@ -301,3 +301,19 @@ function valuesObj(){
   const arrayLikeObj2 = { 100: 'a', 2: 'b', 7: 'c' };
   console.log(Object.values(arrayLikeObj2 )); // ['b', 'c', 'a']
 }
+
+
+/////////////////////////////////
+/////////////////////////////////
+// SNACK funzioni di funzioni ///
+/////////////////////////////////
+/////////////////////////////////
+
+var incrementatore = function(incremento) {
+	return function(valore) {
+		return incremento + valore;
+	};
+};
+var incrementaDiCinque = incrementatore(5);
+console.log(incrementaDiCinque(4));  // 9
+console.log(incrementaDiCinque(16)); // 21
