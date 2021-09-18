@@ -441,18 +441,18 @@ function newOcj(){
     this.nome = (nome || "");
     this.cognome = (cognome ||"");
   }
-  persona.prototype.indirizzo = "";
-  persona.prototype.email = "";
-  persona.prototype.mostraNomeCompleto = function() {return this.nome + " " + this.cognome};
+  Persona.prototype.indirizzo = "";
+  Persona.prototype.email = "";
+  Persona.prototype.mostraNomeCompleto = function() {return this.nome + " " + this.cognome};
   
-  var fabrizioRozzi = Object.create(persona.prototype,
+  var fabrizioRozzi = Object.create(Persona.prototype,
   {
     nome : {value : 'Fabrizio'},
     cognome : {value : 'Rozzi'}
   })
   
   var marioRossi = Object.create(
-    persona.prototype, {
+    Persona.prototype, {
       nome: {
         value        : "Mario",
         writable     : false,
@@ -466,26 +466,67 @@ function newOcj(){
         writable     : true,
         configurable : true },
       email: {
-        value: "", writable: true, configurable: true},
-        nomeCompleto: {
-          configurable: true,
-          get: function() {return this.nome + " " + this.cognome;}
+        _email: { value: "", writable: true, configurable: true },
+        get: function() {
+            return this._email;
+        },
+        set: function (value) {
+          var emailRegExp = /\w+@\w+\.\w{2,4}/i;
+          if (emailRegExp.test(value)) {
+            this._email = value;
+          } else {
+            console.log("Email non valida!");
+          }
         }
+      },
+      nomeCompleto: {
+        configurable: true,
+         get: function() {return this.nome + " " + this.cognome;}
+      }
     }
   );
-  
   console.log(marioRossi, fabrizioRozzi);
+  
 
 
-  function programmatore(nome, cognome)
+  function Programmatore(nome, cognome)
   {
-    persona.call(this, nome, cognome); //Eseguiamo il metodo costruttore persona con i dati passati da programmatore()
+    Persona.call(this, nome, cognome); //Eseguiamo il metodo costruttore persona con i dati passati da programmatore()
     this.linguaggiConosciuti = []; //Aggiungiamo una proprietá all'oggetto programmatore
   }
 
-  programmatore.prototype = Object.create(persona.prototype); //Impostiamo il prototipo di programmatore facendolo puntare a quello di persona
+  Programmatore.prototype = Object.create(Persona.prototype); //Impostiamo il prototipo di programmatore facendolo puntare a quello di persona
 
   var alfonso = new programmatore('Alfonso', 'Graziano');
   alfonso.linguaggiConosciuti.push('php');
   console.log(alfonso);
+}
+
+
+/////////////////////////////////
+/////////////////////////////////
+///// SNACK classi, extends /////
+/////////////////////////////////
+/////////////////////////////////
+function ecma6Class(){
+  class Persona {
+    constructor(nome, cognome) {
+      this.nome = nome;
+      this.cognome = cognome;
+      this._email = "";
+      this.indirizzo = "";
+    }
+    mostraNomeCompleto() {
+      return this.nome + " " + this.cognome;
+    }
+  }
+  class Programmatore extends Persona {
+    constructor(nome, cognome) {
+      super(nome, cognome);
+      this.linguaggiConosciuti = [];
+    }
+  }
+  
+  var alfonsoGraziano = new Programmatore('Alfonso', 'Graziano');
+  console.log(alfonsoGraziano);
 }
