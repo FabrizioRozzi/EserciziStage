@@ -321,7 +321,7 @@ function funInFun(){
     };
   };
   
-  var incrementaDiCinque = incrementatore(5); //Una variabile var diventa una funzione?
+  var incrementaDiCinque = incrementatore(5); 
 
   console.log(incrementaDiCinque(4));  // 9
   console.log(incrementaDiCinque(16)); // 21
@@ -420,7 +420,7 @@ function costruttorePersona(){
    * @param {*} nome 
    * @param {*} cognome 
    */
-  function Persona(nome, cognome) {
+  function persona(nome, cognome) {
     this.nome = nome;
     this.cognome = cognome;
     this.mostraNomeCompleto = function(){return this.nome+' '+this.cognome};
@@ -428,4 +428,64 @@ function costruttorePersona(){
   
   var fabrizioRozzi = new persona('Fabrizio', 'Rozzi');
   console.log(fabrizioRozzi.mostraNomeCompleto());
+}
+
+
+/**
+ * New obj with standard property and data descriptor
+ */
+
+function newOcj(){
+
+  function persona(nome, cognome) {
+    this.nome = (nome || "");
+    this.cognome = (cognome ||"");
+  }
+  persona.prototype.indirizzo = "";
+  persona.prototype.email = "";
+  persona.prototype.mostraNomeCompleto = function() {return this.nome + " " + this.cognome};
+  
+  var fabrizioRozzi = Object.create(persona.prototype,
+  {
+    nome : {value : 'Fabrizio'},
+    cognome : {value : 'Rozzi'}
+  })
+  
+  var marioRossi = Object.create(
+    persona.prototype, {
+      nome: {
+        value        : "Mario",
+        writable     : false,
+        configurable : false },
+      cognome: {
+        value        : "Rossi",
+        writable     : false,
+        configurable : false },
+      indirizzo: {
+        value        : "",
+        writable     : true,
+        configurable : true },
+      email: {
+        value: "", writable: true, configurable: true},
+        nomeCompleto: {
+          configurable: true,
+          get: function() {return this.nome + " " + this.cognome;}
+        }
+    }
+  );
+  
+  console.log(marioRossi, fabrizioRozzi);
+
+
+  function programmatore(nome, cognome)
+  {
+    persona.call(this, nome, cognome); //Eseguiamo il metodo costruttore persona con i dati passati da programmatore()
+    this.linguaggiConosciuti = []; //Aggiungiamo una proprietá all'oggetto programmatore
+  }
+
+  programmatore.prototype = Object.create(persona.prototype); //Impostiamo il prototipo di programmatore facendolo puntare a quello di persona
+
+  var alfonso = new programmatore('Alfonso', 'Graziano');
+  alfonso.linguaggiConosciuti.push('php');
+  console.log(alfonso);
 }
