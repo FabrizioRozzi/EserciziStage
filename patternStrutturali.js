@@ -112,3 +112,54 @@ function facadeFunc(){
   var cilindro = new Cilindro()
   console.log(cilindro.calcolaArea(10, 10));
 }
+
+
+/////////////////////////////////
+/////////////////////////////////
+///////// SNACK mvc //////////
+/////////////////////////////////
+/////////////////////////////////
+
+// var model = { nome: "Mario", cognome: "Rossi" };
+// var view = {
+// 		txtNome: document.getElementById("txtNome"),
+// 		txtCognome: document.getElementById("txtCognome"),
+// 		btnSalva: document.getElementById("btnSalva"),
+// };
+// var controller = {
+// 	init: function() {
+// 		view.txtNome.value = model.nome;
+// 		view.txtCognome.value = model.cognome;
+// 		view.btnSalva.onclick = controller.salva;
+// 	},
+// 	salva: function() {
+// 		model.nome = view.txtNome.value;
+// 		model.cognome = view.txtCognome.value;
+// 		//invia il model al server
+//     console.log(model.nome + model.cognome);
+		
+// 	}
+
+// };
+
+
+/////////////////////////////////
+/////////////////////////////////
+//// SNACK pattern promise //////
+/////////////////////////////////
+/////////////////////////////////
+
+/**
+ * Gestione risultato di un invio email gestite da una promise con .done e .fail
+ */
+function patProm(){
+  getMessaggio(function(msg) { console.log(msg.contenuto); })
+  
+  var promise = getMessaggio();
+  promise.done(sendMessaggio).done(function() {
+    console.log("Messaggio inoltrato");
+  });
+  promise.fail(function(err) {
+    console.log("Si è verificato un errore: " + err.message);
+  });
+}
