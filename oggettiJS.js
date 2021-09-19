@@ -98,6 +98,7 @@ function newOcj(){
 ///// SNACK classi, extends /////
 /////////////////////////////////
 /////////////////////////////////
+
 function ecma6Class(){
   class Persona {
     constructor(nome, cognome) {
@@ -119,4 +120,46 @@ function ecma6Class(){
   
   var alfonsoGraziano = new Programmatore('Alfonso', 'Graziano');
   console.log(alfonsoGraziano);
+}
+
+
+/////////////////////////////////
+/////////////////////////////////
+//////// SNACK Reflect //////////
+/////////////////////////////////
+/////////////////////////////////
+
+
+/**
+ * Vari metodi di Reflect applicati
+ */
+function playReflect(){
+  var myObject = Object.create(null);
+  var myObject = {id: 123, name: "objName"};
+  console.log(Reflect.ownKeys(myObject)); //Restituisce un'array con le chiavi dell'oggetto ["id", "name"]
+  console.log(Reflect.has(myObject, "name")); //Restituisce true se esiste una proprietá "name" in myObject
+  console.log(Reflect.get(myObject, "name")); //Restituisce il valore della proprietá "name"
+  Reflect.set(myObject, "name", "anotherName");//Cambio il nome tramite set()
+  console.log(Reflect.get(myObject, "name")); //anotherName
+  console.log(Reflect.deleteProperty(myObject, "name"));//Elimina la proprietá e restuitisce un booleano per conferma
+}
+
+
+/**
+ * Gestione del costruttore con Reflect
+ */
+function creaAuto(){
+  class Automobile {
+    constructor(modello, colore) {
+       this.modello = modello;
+       this.colore = colore;
+    }
+  }
+  
+  var bmw = produciAuto("X5", "Bianco perla");
+  console.log(bmw);
+  
+  function produciAuto(modello, colore) {
+    return Reflect.construct(Automobile, [modello, colore], Automobile);
+  }
 }
