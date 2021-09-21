@@ -163,3 +163,20 @@ function creaAuto(){
     return Reflect.construct(Automobile, [modello, colore], Automobile);
   }
 }
+
+
+
+
+//ESERCIZI SUGLI OGGETTI
+
+// let animals = {
+//   // add property
+//   domesticAnimals: ["cat", "dog", "cow", "goat", "sheep", "donkey", "pig", "horse"],
+//   // add method
+//   printdomesticAnimals: function () {
+
+//     // senza l'utilizzo di => il this. puntava all'oggetto window
+//     setTimeout(() => console.log(this.domesticAnimals.join(" - ")), 3000)
+//   },
+// };
+// animals.printdomesticAnimals();
