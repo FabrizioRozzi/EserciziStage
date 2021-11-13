@@ -4,10 +4,26 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <script type="text/javascript" src="script.js"></script>
+  <script type="text/javascript" src="oggettiJS.js"></script>
+  <script type="text/javascript" src="funzioniJS.js"></script>
+  <script type="text/javascript" src="cicliJS.js"></script>
+  <script type="text/javascript" src="patternCreazionali.js"></script>
+  <script type="text/javascript" src="patternStrutturali.js"></script>
+  <script type="text/javascript" src="dom.js"></script>
   <title>Document</title>
 </head>
 <body>
+
+  <p id="p1">Hello World!</p>
+  <button onclick="changeText()">click me!</button>
   
-</body>
+  <script>
+    function changeText(){
+      document.getElementById("p1").innerHTML = "New text!";
+    }
+  </script>
+  
+  <p>The paragraph above was changed by a script.</p>
+  
+  </body>
 </html>
